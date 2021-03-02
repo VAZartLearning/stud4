@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('build/css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                      <h1>Login</h1>
+                        {% if error %}
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                        {% endif %}
+
+                        {{ form_start(form, { 'action': path('login_check') }) }}
+                            {{ form_row(form._username) }}
+                            {{ form_row(form._password) }}
+                            {{ form_row(form._remember_me) }}
+
+                            <div class="forgot" style="height:20px">
+                                <a style="float:left" href="{{ path('forgot_password') }}">Forgot Password?</a>
+                                <a style="float:right" href="{{ path('registration') }}">Registration</a>
+                            </div>
+
+                            <div class="auth-btn-section">
+                                <button type="submit" id="form_submit" name="form[submit]" class="btn btn-small btn-primary">Login</button>
+                            </div>
+                        {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock %}
+
+
